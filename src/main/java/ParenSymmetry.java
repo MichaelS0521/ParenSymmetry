@@ -1,14 +1,27 @@
-package src.main.java;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Random;
 
 public class ParenSymmetry {
 
 
     private Boolean isBalanced(String s) {
-        // implement this method
-        return null;
+        String[] trueStrings = {"()", "(())", "(((())))", "", "(()())((()))", "( )", "( () ( ) )"};
+
+        return s;
     }
 
     private void checkFile(String filename) {
+        try {
+            PrintStream writer = new PrintStream( new File("TestStrings0.txt"));
+            Random r = new Random();
+
+            writer.close();
+        }
+        catch(IOException e) {
+            System.out.println("An error occured while trying to write to the file");
+        }
         // open file named filename
 
         // for each line in the file
