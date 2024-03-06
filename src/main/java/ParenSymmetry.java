@@ -2,26 +2,54 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Random;
+import java.util.Scanner;
+
+import static java.lang.System.in;
 
 public class ParenSymmetry {
 
 
     private Boolean isBalanced(String s) {
-        String[] trueStrings = {"()", "(())", "(((())))", "", "(()())((()))", "( )", "( () ( ) )"};
+        boolean b;
+        int open = 1;
+        int closed = -1;
+        for (int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == '(') {
+                open++;
+            } else if (s.charAt(i) == ')') {
+                closed++;
+            }
+        }
 
-        return s;
+        if(open==closed){
+            //System.out.println("String is balanced");
+            b=true;
+        }
+        else {
+            //System.out.println("String is unbalanced");
+            b=false;
+        }
+
+        return b;
     }
 
-    private void checkFile(String filename) {
-        try {
-            PrintStream writer = new PrintStream( new File("TestStrings0.txt"));
-            Random r = new Random();
 
-            writer.close();
+    private void checkFile(String filename) {
+
+        try {
+            File file = new File(filename);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()){
+
+              String str = scanner.nextLine();
+                boolean b = isBalanced(str);
+                System.out.println(b);
+            }
+            scanner.close();
         }
-        catch(IOException e) {
+        catch(IOException e){
             System.out.println("An error occured while trying to write to the file");
-        }
+        };
         // open file named filename
 
         // for each line in the file
@@ -50,6 +78,7 @@ public class ParenSymmetry {
             trues = ps.isBalanced(strToTest);
         }
         printResult(trues, true);
+        ps.checkFile("TestStrings0.txt\n");
 
     }
 
