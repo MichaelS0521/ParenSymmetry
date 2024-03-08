@@ -11,8 +11,8 @@ public class ParenSymmetry {
 
     private Boolean isBalanced(String s) {
         boolean b;
-        int open = 1;
-        int closed = -1;
+        int open = 0;
+        int closed = 0;
         for (int i = 0; i < s.length(); i++){
             if (s.charAt(i) == '(') {
                 open++;
@@ -66,19 +66,19 @@ public class ParenSymmetry {
         printResult(b0, true);
 
         String[] falseStrings = {"(", "((", ")", "", "(()())((())))"};
-        Boolean falses = true;
+        boolean falses = true;
         for (String strToTest : falseStrings) {
             falses = ps.isBalanced(strToTest);
         }
         printResult(falses, false);
 
         String[] trueStrings = {"()", "(())", "(((())))", "", "(()())((()))", "(   )", "( () ( ) )"};
-        Boolean trues = false;
+        boolean trues = false;
         for (String strToTest : trueStrings) {
             trues = ps.isBalanced(strToTest);
         }
         printResult(trues, true);
-        ps.checkFile("TestStrings0.txt\n");
+        ps.checkFile("TestStrings0.txt");
 
     }
 
